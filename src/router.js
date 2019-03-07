@@ -24,7 +24,18 @@ export default new Router({
       path: '/trayectos',
       name: 'trayectos',
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/Trayecto.vue')
+        import(/* webpackChunkName: "trayecto" */ './views/Trayecto.vue')
+    },
+    {
+      path: '/choferes',
+      name: 'choferes',
+      component: () =>
+        import(/* webpackChunkName: "trayecto" */ './views/Chofer.vue')
+    },
+    {
+      path: '/trayectos/agregar_trayecto',
+      name: 'agregarTrayecto',
+      component: () => import('./views/AgregarTrayecto.vue')
     }
   ]
 })

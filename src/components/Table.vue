@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-table striped hover :items="trayectos" :fields="fields"/>
+  <div class="mt-5">
+    <b-table class="mt-5" bordered striped hover :items="data" :fields="fields"/>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: "Table",
   props: {
-    trayectos: {
+    data: {
       type: Array
     },
     fields: {

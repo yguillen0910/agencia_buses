@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="header" class="mt-5">
     <h1>Agencia de Buses</h1>
   </div>
 </template>

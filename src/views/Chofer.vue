@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <Header></Header>
-    <b-button class="mt-5" :to="{name : 'agregarTrayecto'}">Agregar Trayecto</b-button>
-    <Table v-bind:data="trayectos" v-bind:fields="fields"></Table>
+    <b-button class="mt-5" @click="agregarChofer">Agregar Chofer</b-button>
+    <Table v-bind:data="choferes" v-bind:fields="fields"></Table>
   </div>
 </template>
 
@@ -13,31 +13,35 @@ import Table from "@/components/Table.vue";
 
 import { mapState, mapActions } from "vuex";
 export default {
-  name: "trayecto",
+  name: "chofer",
   components: {
     Header,
     Table
   },
   mounted() {
-    this.$store.dispatch("obtenerTrayectos");
+    this.$store.dispatch("obtenerChoferes");
   },
   data() {
     return {
       fields: {
-        Nombre: {
-          label: "Trayecto",
+        PrimerNombre: {
+          label: "Primer Nombre",
           sortable: true
         },
-        CiudadSalida: {
+        SegundoNombre: {
           label: "Ciudad Salida",
           sortable: true
         },
-        CiudadDestino: {
-          label: "Ciudad Destino",
+        ApellidoPaterno: {
+          label: "Segundo Nombre",
           sortable: true
         },
-        Promedio: {
-          label: "Promedio de Pasajeros",
+        ApellidoMaterno: {
+          label: "ApellidoMaterno",
+          sortable: true
+        },
+        RUT: {
+          label: "RUT",
           sortable: true
         },
         Opciones: { label: "Opciones", sortable: false }
@@ -45,7 +49,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["trayectos"])
+    ...mapState(["choferes", "nuevoChofer"])
+  },
+  methods: {
+    ...mapActions(["agregarChofer"])
   }
 };
 </script>
