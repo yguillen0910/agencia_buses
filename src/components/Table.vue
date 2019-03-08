@@ -33,9 +33,7 @@ export default {
     }
   },
   data() {
-    return {
-      url: ""
-    };
+    return {};
   },
   methods: {
     ...mapActions(["eliminarObjeto"])

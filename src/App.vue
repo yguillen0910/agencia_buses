@@ -9,6 +9,8 @@
             <b-nav-item :to="{name : 'about'}">About</b-nav-item>
             <b-nav-item :to="{name : 'trayectos'}">Trayectos</b-nav-item>
             <b-nav-item :to="{name : 'choferes'}">Choferes</b-nav-item>
+            <b-nav-item :to="{name : 'buses'}">Buses</b-nav-item>
+            <b-nav-item :to="{name : 'pasajeros'}">Pasajeros</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-container>

@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     trayectos: [],
     choferes: [],
+    pasajeros: [],
     trayecto: {
       Nombre: '',
       CiudadSalida: '',
@@ -21,6 +22,20 @@ export default new Vuex.Store({
       ApellidoPaterno: '',
       ApellidoMaterno: '',
       RUT: ''
+    },
+    pasajero: {
+      PrimerNombre: '',
+      SegundoNombre: '',
+      ApellidoPaterno: '',
+      ApellidoMaterno: '',
+      RUT: '',
+      Sexo: ''
+    },
+    bus: {
+      Placa: '',
+      Chofer: '',
+      Capacidad: '',
+      PorcentajeVendido: ''
     },
     excluirTrayecto: ''
   },
@@ -43,6 +58,18 @@ export default new Vuex.Store({
     },
     crearChofer (state, trayectoObject) {
       state.choferes.push(trayectoObject)
+    },
+    llenarPasajeros (state, trayectoAccion) {
+      state.pasajeros = trayectoAccion
+    },
+    crearPasajero (state, trayectoObject) {
+      state.pasajeros.push(trayectoObject)
+    },
+    llenarBuses (state, busAccion) {
+      state.buses = busAccion
+    },
+    crearBus (state, busObject) {
+      state.buses.push(busObject)
     }
   },
   actions: {
@@ -87,6 +114,40 @@ export default new Vuex.Store({
       }
       axios.post('http://localhost:8000/choferes/', state.chofer).then(_ => {
         commit('crearChofer', state.chofer)
+      })
+    },
+    obtenerPasajeros ({ commit }) {
+      axios
+        .get('http://localhost:8000/pasajeros/')
+        .then(r => r.data)
+        .then(pasajeros => {
+          commit('llenarPasajeros', pasajeros)
+        })
+    },
+    agregarPasajero ({ commit, state }) {
+      console.log(state)
+      if (!state.pasajero) {
+        return
+      }
+      axios.post('http://localhost:8000/pasajeros/', state.pasajero).then(_ => {
+        commit('crearPasajero', state.pasajero)
+      })
+    },
+    obtenerBuses ({ commit }) {
+      axios
+        .get('http://localhost:8000/buses/')
+        .then(r => r.data)
+        .then(buses => {
+          commit('llenarBuses', buses)
+        })
+    },
+    agregarBus ({ commit, state }) {
+      console.log(state)
+      if (!state.bus) {
+        return
+      }
+      axios.post('http://localhost:8000/buses/', state.bus).then(_ => {
+        commit('crearBus', state.bus)
       })
     }
   }
