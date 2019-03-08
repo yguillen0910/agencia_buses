@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <Header></Header>
-    <b-button class="mt-5" @click="agregarChofer">Agregar Chofer</b-button>
+    <h2 class="mt-5 text-center">Trayectos</h2>
+    <b-button class="mt-5" :to="{name : 'vistaAgregarChofer'}">Agregar Chofer</b-button>
     <Table v-bind:data="choferes" v-bind:fields="fields"></Table>
   </div>
 </template>

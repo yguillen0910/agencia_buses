@@ -14,7 +14,15 @@ export default new Vuex.Store({
       Nombre: '',
       CiudadSalida: '',
       CiudadDestino: ''
-    }
+    },
+    chofer: {
+      PrimerNombre: '',
+      SegundoNombre: '',
+      ApellidoPaterno: '',
+      ApellidoMaterno: '',
+      RUT: ''
+    },
+    excluirTrayecto: ''
   },
   getters: {
     trayectos: state => state.trayectos,
@@ -32,6 +40,9 @@ export default new Vuex.Store({
     },
     llenarChoferes (state, choferAccion) {
       state.choferes = choferAccion
+    },
+    crearChofer (state, trayectoObject) {
+      state.choferes.push(trayectoObject)
     }
   },
   actions: {
@@ -51,8 +62,15 @@ export default new Vuex.Store({
         commit('crearTrayecto', state.trayecto)
       })
     },
-    eliminarTrayecto ({ commit }) {
-      commit('borrarTrayecto')
+    eliminarObjeto ({ commit }, url) {
+      axios.delete(url).then(_ => {
+        commit('borrarTrayecto')
+      })
+    },
+    actualizarTrayecto ({ commit, state }, url) {
+      axios.put(url, state.trayecto).then(_ => {
+        console.log('Actualizado')
+      })
     },
     obtenerChoferes ({ commit }) {
       axios
@@ -61,6 +79,15 @@ export default new Vuex.Store({
         .then(choferes => {
           commit('llenarChoferes', choferes)
         })
+    },
+    agregarChofer ({ commit, state }) {
+      console.log(state)
+      if (!state.chofer) {
+        return
+      }
+      axios.post('http://localhost:8000/choferes/', state.chofer).then(_ => {
+        commit('crearChofer', state.chofer)
+      })
     }
   }
 })

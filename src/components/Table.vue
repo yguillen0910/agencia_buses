@@ -1,11 +1,17 @@
 <template>
   <div class="mt-5">
     <b-table class="mt-5 text-center" bordered striped hover :items="data" :fields="fields">
-      <template slot="Opciones">
-        <b-button variant="ligth" class="mr-3">
+      <template slot="Opciones" slot-scope="row">
+        <b-button
+          variant="ligth"
+          class="mr-3"
+          :to="{name : 'vistaAgregarTrayecto'}"
+          v-bind:url="row.item.url"
+          :disabled="true"
+        >
           <i class="fas fa-edit"></i>
         </b-button>
-        <b-button variant="ligth">
+        <b-button variant="ligth" @click="eliminarObjeto(row.item.url)">
           <i class="fas fa-trash-alt"></i>
         </b-button>
       </template>
@@ -13,7 +19,9 @@
   </div>
 </template>
 
+
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "Table",
   props: {
@@ -25,7 +33,12 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      url: ""
+    };
+  },
+  methods: {
+    ...mapActions(["eliminarObjeto"])
   }
 };
 </script>

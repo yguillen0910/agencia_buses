@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <Header></Header>
-    <b-button class="mt-5" :to="{name : 'agregarTrayecto'}">Agregar Trayecto</b-button>
+    <h2 class="mt-5 text-center">Trayectos</h2>
+    <b-button class="mt-5" :to="{name : 'vistaAgregarTrayecto'}">Agregar Trayecto</b-button>
     <Table v-bind:data="trayectos" v-bind:fields="fields"></Table>
   </div>
 </template>
@@ -11,7 +12,7 @@
 import Header from "@/components/Header.vue";
 import Table from "@/components/Table.vue";
 
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "trayecto",
   components: {

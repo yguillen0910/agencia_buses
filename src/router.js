@@ -34,8 +34,13 @@ export default new Router({
     },
     {
       path: '/trayectos/agregar_trayecto',
-      name: 'agregarTrayecto',
+      name: 'vistaAgregarTrayecto',
       component: () => import('./views/AgregarTrayecto.vue')
+    },
+    {
+      path: '/choferes/agregar_chofer',
+      name: 'vistaAgregarChofer',
+      component: () => import('./views/AgregarChofer.vue')
     }
   ]
 })

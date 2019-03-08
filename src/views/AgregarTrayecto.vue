@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1 class="mt-5">Crear Trayecto</h1>
-    <!-- <b-button class="mt-5" @click="agregarTrayecto">Agregar Trayecto</b-button> -->
     <template>
       <div class="mt-5">
         <b-form v-if="show">
