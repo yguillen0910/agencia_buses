@@ -12,6 +12,8 @@ export default new Vuex.Store({
     choferes: [],
     pasajeros: [],
     buses: [],
+    boletos: [],
+    horarios: [],
     trayecto: {
       Nombre: '',
       CiudadSalida: '',
@@ -32,11 +34,16 @@ export default new Vuex.Store({
       RUT: '',
       Sexo: ''
     },
-    bus: {
-      Placa: '',
-      Chofer: '',
-      Capacidad: '',
-      PorcentajeVendido: ''
+    boleto: {
+      Fecha: '',
+      Pasajero: '',
+      Bus: ''
+    },
+    horario: {
+      HoraInicio: '',
+      HoraFin: '',
+      Trayecto: '',
+      Bus: ''
     },
     excluirTrayecto: ''
   },
@@ -44,7 +51,9 @@ export default new Vuex.Store({
     trayectos: state => state.trayectos,
     choferes: state => state.choferes,
     pasajeros: state => state.pasajeros,
-    buses: state => state.buses
+    buses: state => state.buses,
+    horarios: state => state.horarios,
+    boletos: status => state.boletos
   },
   mutations: {
     llenarTrayectos (state, trayectoAccion) {
@@ -73,6 +82,18 @@ export default new Vuex.Store({
     },
     crearBus (state, busObject) {
       state.buses.push(busObject)
+    },
+    llenarBoletos (state, busAccion) {
+      state.boletos = busAccion
+    },
+    crearBoleto (state, busObject) {
+      state.boletos.push(busObject)
+    },
+    llenarHorarios (state, busAccion) {
+      state.horarios = busAccion
+    },
+    crearBus (state, busObject) {
+      state.horarios.push(busObject)
     }
   },
   actions: {
@@ -151,6 +172,40 @@ export default new Vuex.Store({
       }
       axios.post('http://localhost:8000/buses/', state.bus).then(_ => {
         commit('crearBus', state.bus)
+      })
+    },
+    obtenerHorarios ({ commit }) {
+      axios
+        .get('http://localhost:8000/horarios/')
+        .then(r => r.data)
+        .then(horarios => {
+          commit('llenarHorarios', horarios)
+        })
+    },
+    agregarHorario ({ commit, state }) {
+      console.log(state)
+      if (!state.horario) {
+        return
+      }
+      axios.post('http://localhost:8000/horarios/', state.horario).then(_ => {
+        commit('crearHorario', state.horario)
+      })
+    },
+    obtenerBoletos ({ commit }) {
+      axios
+        .get('http://localhost:8000/boletos/')
+        .then(r => r.data)
+        .then(boletos => {
+          commit('llenarBoletos', boletos)
+        })
+    },
+    agregarBoleto ({ commit, state }) {
+      console.log(state)
+      if (!state.boleto) {
+        return
+      }
+      axios.post('http://localhost:8000/boletos/', state.boleto).then(_ => {
+        commit('crearHorario', state.boleto)
       })
     }
   }

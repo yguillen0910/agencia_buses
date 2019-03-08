@@ -58,6 +58,26 @@ export default new Router({
       path: '/pasajeros/agregar_pasajero',
       name: 'vistaAgregarPasajero',
       component: () => import('./views/AgregarPasajero.vue')
+    },
+    {
+      path: '/boletos',
+      name: 'boletos',
+      component: () => import('./views/Boleto.vue')
+    },
+    {
+      path: '/horarios',
+      name: 'horarios',
+      component: () => import('./views/Horario.vue')
+    },
+    {
+      path: '/boletos/agregar_boleto',
+      name: 'vistaAgregarBoleto',
+      component: () => import('./views/AgregarBoleto.vue')
+    },
+    {
+      path: '/horarios/agregar_horario',
+      name: 'vistaAgregarHorario',
+      component: () => import('./views/AgregarHorario.vue')
     }
   ]
 })

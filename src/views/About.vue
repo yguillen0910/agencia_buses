@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="about m-5">
+    <h1>Postulación Destacame.cl By. Yuzmhar Guillén</h1>
   </div>
 </template>
