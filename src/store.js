@@ -45,6 +45,11 @@ export default new Vuex.Store({
       Trayecto: '',
       Bus: ''
     },
+    bus: {
+      Placa: '',
+      Chofer: '',
+      Capacidad: ''
+    },
     excluirTrayecto: ''
   },
   getters: {
@@ -92,7 +97,7 @@ export default new Vuex.Store({
     llenarHorarios (state, busAccion) {
       state.horarios = busAccion
     },
-    crearBus (state, busObject) {
+    crearHorario (state, busObject) {
       state.horarios.push(busObject)
     }
   },
@@ -205,7 +210,7 @@ export default new Vuex.Store({
         return
       }
       axios.post('http://localhost:8000/boletos/', state.boleto).then(_ => {
-        commit('crearHorario', state.boleto)
+        commit('crearBoleto', state.boleto)
       })
     }
   }

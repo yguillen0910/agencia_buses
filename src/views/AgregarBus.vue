@@ -5,7 +5,7 @@
       <div class="mt-5">
         <b-form v-if="show">
           <b-form-group id="ejemploPlacaBus" label="Placa:" label-for="Placa">
-            <b-form-input id="Placa" type="number" v-model="bus.Placa" required/>
+            <b-form-input id="Placa" type="text" v-model="bus.Placa" required/>
           </b-form-group>
           <b-form-group id="ejemploCapacidad" label="Capacidad:" label-for="Capacidad">
             <b-form-input id="Capacidad" type="number" v-model="bus.Capacidad" required/>
@@ -16,7 +16,7 @@
                 v-for="option in choferes"
                 v-bind:value="option.url"
                 :key="option.url"
-              >{{ option.PrimerNombre }} , {{ option.ApellidoPaterno }}</option>
+              >{{ option.PrimerNombre }} {{ option.SegundoNombre }} , {{ option.ApellidoPaterno }} {{ option.ApellidoMaterno }}</option>
             </b-form-select>
           </b-form-group>
           <b-button class="mt-5" @click="agregarBus()">Guardar</b-button>
