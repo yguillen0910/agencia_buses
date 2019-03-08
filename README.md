@@ -1,29 +1,21 @@
-# agencia_buses
+# Agencia Buses
 
-## Project setup
-```
+## Requisitos
+Instalar *NodeJS* en su ultima version. Encontrara un ejecutable para su instalacion en el siguiente link: https://nodejs.org/en/download/.
+
+## Dependencias
+Para la instalación de dependencias ejecutar el siguiente comando:
+
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+
+## Desarrollo
+Para ejecutar el proyecto en una ventana del navegador, ejecutar el siguiente comando:
+
 npm run serve
-```
 
-### Compiles and minifies for production
-```
+
+### Compilación
+Para compilar el proyecto y ejecutar en un ambiente de producción ejectuar el siguiente comando:
+
 npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

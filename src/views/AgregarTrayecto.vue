@@ -18,9 +18,6 @@
           <b-form-group id="ejemploCiudadDestino" label="Ciudad Destino:" label-for="CiudadDestino">
             <b-form-input id="CiudadDestino" type="text" v-model="trayecto.CiudadDestino" required/>
           </b-form-group>
-          <!-- <b-form-group id="exampleInputGroup3" label="Food:" label-for="exampleInput3">
-            <b-form-select id="exampleInput3" :options="foods" required v-model="trayecto.food"/>
-          </b-form-group>-->
           <b-button class="mt-5" @click="agregarTrayecto()">Guardar</b-button>
         </b-form>
       </div>
@@ -30,23 +27,12 @@
 
 <script>
 // @ is an alias to /src
-import Header from "@/components/Header.vue";
 
 import { mapState, mapActions } from "vuex";
 export default {
   name: "agregarTrayecto",
-  components: {
-    Header
-  },
   data() {
     return {
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn"
-      ],
       show: true
     };
   },

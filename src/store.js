@@ -6,6 +6,8 @@ import VueAxios from 'vue-axios'
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
+import router from "@/router.js";
+
 export default new Vuex.Store({
   state: {
     trayectos: [],
@@ -61,48 +63,48 @@ export default new Vuex.Store({
     boletos: status => state.boletos
   },
   mutations: {
-    llenarTrayectos (state, trayectoAccion) {
+    llenarTrayectos(state, trayectoAccion) {
       state.trayectos = trayectoAccion
     },
-    crearTrayecto (state, trayectoObject) {
+    crearTrayecto(state, trayectoObject) {
       state.trayectos.push(trayectoObject)
     },
-    borrarTrayecto (state) {
+    borrarTrayecto(state) {
       state.nuevoTrayecto = ''
     },
-    llenarChoferes (state, choferAccion) {
+    llenarChoferes(state, choferAccion) {
       state.choferes = choferAccion
     },
-    crearChofer (state, trayectoObject) {
+    crearChofer(state, trayectoObject) {
       state.choferes.push(trayectoObject)
     },
-    llenarPasajeros (state, trayectoAccion) {
+    llenarPasajeros(state, trayectoAccion) {
       state.pasajeros = trayectoAccion
     },
-    crearPasajero (state, trayectoObject) {
+    crearPasajero(state, trayectoObject) {
       state.pasajeros.push(trayectoObject)
     },
-    llenarBuses (state, busAccion) {
+    llenarBuses(state, busAccion) {
       state.buses = busAccion
     },
-    crearBus (state, busObject) {
+    crearBus(state, busObject) {
       state.buses.push(busObject)
     },
-    llenarBoletos (state, busAccion) {
+    llenarBoletos(state, busAccion) {
       state.boletos = busAccion
     },
-    crearBoleto (state, busObject) {
+    crearBoleto(state, busObject) {
       state.boletos.push(busObject)
     },
-    llenarHorarios (state, busAccion) {
+    llenarHorarios(state, busAccion) {
       state.horarios = busAccion
     },
-    crearHorario (state, busObject) {
+    crearHorario(state, busObject) {
       state.horarios.push(busObject)
     }
   },
   actions: {
-    obtenerTrayectos ({ commit }) {
+    obtenerTrayectos({ commit }) {
       axios
         .get('http://localhost:8000/trayectos/')
         .then(r => r.data)
@@ -110,25 +112,27 @@ export default new Vuex.Store({
           commit('llenarTrayectos', trayectos)
         })
     },
-    agregarTrayecto ({ commit, state }) {
+    agregarTrayecto({ commit, state }) {
       if (!state.trayecto) {
         return
       }
       axios.post('http://localhost:8000/trayectos/', state.trayecto).then(_ => {
-        commit('crearTrayecto', state.trayecto)
+        commit('crearTrayecto', state.trayecto),
+          router.go(-1)
       })
+
     },
-    eliminarObjeto ({ commit }, url) {
+    eliminarObjeto({ commit }, url) {
       axios.delete(url).then(_ => {
-        commit('borrarTrayecto')
+        router.go(0)
       })
     },
-    actualizarTrayecto ({ commit, state }, url) {
+    actualizarTrayecto({ commit, state }, url) {
       axios.put(url, state.trayecto).then(_ => {
         console.log('Actualizado')
       })
     },
-    obtenerChoferes ({ commit }) {
+    obtenerChoferes({ commit }) {
       axios
         .get('http://localhost:8000/choferes/')
         .then(r => r.data)
@@ -136,16 +140,17 @@ export default new Vuex.Store({
           commit('llenarChoferes', choferes)
         })
     },
-    agregarChofer ({ commit, state }) {
+    agregarChofer({ commit, state }) {
       console.log(state)
       if (!state.chofer) {
         return
       }
       axios.post('http://localhost:8000/choferes/', state.chofer).then(_ => {
-        commit('crearChofer', state.chofer)
+        commit('crearChofer', state.chofer),
+          router.go(-1)
       })
     },
-    obtenerPasajeros ({ commit }) {
+    obtenerPasajeros({ commit }) {
       axios
         .get('http://localhost:8000/pasajeros/')
         .then(r => r.data)
@@ -153,16 +158,17 @@ export default new Vuex.Store({
           commit('llenarPasajeros', pasajeros)
         })
     },
-    agregarPasajero ({ commit, state }) {
+    agregarPasajero({ commit, state }) {
       console.log(state)
       if (!state.pasajero) {
         return
       }
       axios.post('http://localhost:8000/pasajeros/', state.pasajero).then(_ => {
-        commit('crearPasajero', state.pasajero)
+        commit('crearPasajero', state.pasajero),
+          router.go(-1)
       })
     },
-    obtenerBuses ({ commit }) {
+    obtenerBuses({ commit }) {
       axios
         .get('http://localhost:8000/buses/')
         .then(r => r.data)
@@ -170,16 +176,17 @@ export default new Vuex.Store({
           commit('llenarBuses', buses)
         })
     },
-    agregarBus ({ commit, state }) {
+    agregarBus({ commit, state }) {
       console.log(state)
       if (!state.bus) {
         return
       }
       axios.post('http://localhost:8000/buses/', state.bus).then(_ => {
-        commit('crearBus', state.bus)
+        commit('crearBus', state.bus),
+          router.go(-1)
       })
     },
-    obtenerHorarios ({ commit }) {
+    obtenerHorarios({ commit }) {
       axios
         .get('http://localhost:8000/horarios/')
         .then(r => r.data)
@@ -187,16 +194,17 @@ export default new Vuex.Store({
           commit('llenarHorarios', horarios)
         })
     },
-    agregarHorario ({ commit, state }) {
+    agregarHorario({ commit, state }) {
       console.log(state)
       if (!state.horario) {
         return
       }
       axios.post('http://localhost:8000/horarios/', state.horario).then(_ => {
-        commit('crearHorario', state.horario)
+        commit('crearHorario', state.horario),
+          router.go(-1)
       })
     },
-    obtenerBoletos ({ commit }) {
+    obtenerBoletos({ commit }) {
       axios
         .get('http://localhost:8000/boletos/')
         .then(r => r.data)
@@ -204,14 +212,18 @@ export default new Vuex.Store({
           commit('llenarBoletos', boletos)
         })
     },
-    agregarBoleto ({ commit, state }) {
+    agregarBoleto({ commit, state }) {
       console.log(state)
       if (!state.boleto) {
         return
       }
       axios.post('http://localhost:8000/boletos/', state.boleto).then(_ => {
-        commit('crearBoleto', state.boleto)
+        commit('crearBoleto', state.boleto),
+          router.go(-1)
       })
+    },
+    volver() {
+      router.go(-1)
     }
   }
 })

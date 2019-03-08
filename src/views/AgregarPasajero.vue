@@ -47,12 +47,11 @@
           </b-form-group>
 
           <b-form-group id="ejemploSexo" label="Sexo:" label-for="Sexo">
-            <b-form-input id="Sexo" type="text" v-model="pasajero.Sexo" required/>
+            <b-form-select id="Sexo" type="text" v-model="pasajero.Sexo" required>
+              <option :value="F" :key="F">{{ "F" }}</option>
+              <option :value="M" :key="M">{{ "M" }}</option>
+            </b-form-select>
           </b-form-group>
-
-          <!-- <b-form-group id="exampleInputGroup3" label="Food:" label-for="exampleInput3">
-            <b-form-select id="exampleInput3" :options="foods" required v-model="pasajero.food"/>
-          </b-form-group>-->
           <b-button class="mt-5" @click="agregarPasajero()">Guardar</b-button>
         </b-form>
       </div>
@@ -72,13 +71,6 @@ export default {
   },
   data() {
     return {
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn"
-      ],
       show: true
     };
   },
