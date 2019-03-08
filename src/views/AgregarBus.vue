@@ -7,16 +7,18 @@
           <b-form-group id="ejemploPlacaBus" label="Placa:" label-for="Placa">
             <b-form-input id="Placa" type="number" v-model="bus.Placa" required/>
           </b-form-group>
-
-          <b-form-group id="ejemploChoferBus" label="Seleccione Chofer:" label-for="Chofer">
-            <b-form-input id="Chofer" type="text" v-model="bus.Chofer" required/>
-          </b-form-group>
-          <b-form-group id="ejemploCapacidad" label="Cantidad:" label-for="Capacidad">
+          <b-form-group id="ejemploCapacidad" label="Capacidad:" label-for="Capacidad">
             <b-form-input id="Capacidad" type="number" v-model="bus.Capacidad" required/>
           </b-form-group>
-          <!-- <b-form-group id="exampleInputGroup3" label="Food:" label-for="exampleInput3">
-            <b-form-select id="exampleInput3" :options="foods" required v-model="bus.food"/>
-          </b-form-group>-->
+          <b-form-group id="ejemploChoferBus" label="Seleccione Chofer:" label-for="Chofer">
+            <b-form-select id="Chofer" type="text" v-model="bus.Chofer" required>
+              <option
+                v-for="option in choferes"
+                v-bind:value="option.url"
+                :key="option.url"
+              >{{ option.PrimerNombre }} , {{ option.ApellidoPaterno }}</option>
+            </b-form-select>
+          </b-form-group>
           <b-button class="mt-5" @click="agregarBus()">Guardar</b-button>
         </b-form>
       </div>
@@ -34,20 +36,16 @@ export default {
   components: {
     Header
   },
+  mounted() {
+    this.$store.dispatch("obtenerChoferes");
+  },
   data() {
     return {
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn"
-      ],
       show: true
     };
   },
   computed: {
-    ...mapState(["bus"])
+    ...mapState(["bus", "choferes"])
   },
   methods: {
     ...mapActions(["agregarBus"])

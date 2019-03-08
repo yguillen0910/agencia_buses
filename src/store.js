@@ -11,6 +11,7 @@ export default new Vuex.Store({
     trayectos: [],
     choferes: [],
     pasajeros: [],
+    buses: [],
     trayecto: {
       Nombre: '',
       CiudadSalida: '',
@@ -41,7 +42,9 @@ export default new Vuex.Store({
   },
   getters: {
     trayectos: state => state.trayectos,
-    choferes: state => state.choferes
+    choferes: state => state.choferes,
+    pasajeros: state => state.pasajeros,
+    buses: state => state.buses
   },
   mutations: {
     llenarTrayectos (state, trayectoAccion) {
