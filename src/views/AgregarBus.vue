@@ -8,7 +8,16 @@
             <b-form-input id="Placa" type="text" v-model="bus.Placa" required/>
           </b-form-group>
           <b-form-group id="ejemploCapacidad" label="Capacidad:" label-for="Capacidad">
-            <b-form-input id="Capacidad" type="number" v-model="bus.Capacidad" required/>
+            <b-form-input
+              id="Capacidad"
+              type="number"
+              v-model="bus.Capacidad"
+              :state="validarCapacidad"
+            />
+            <b-form-invalid-feedback
+              :state="validarCapacidad"
+            >La capacidad del autobus no debe ser distinta de 10.</b-form-invalid-feedback>
+            <b-form-valid-feedback :state="validarCapacidad">Perfecto!</b-form-valid-feedback>
           </b-form-group>
           <b-form-group id="ejemploChoferBus" label="Seleccione Chofer:" label-for="Chofer">
             <b-form-select id="Chofer" type="text" v-model="bus.Chofer" required>
@@ -45,7 +54,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["bus", "choferes"])
+    ...mapState(["bus", "choferes"]),
+    validarCapacidad() {
+      return this.bus.Capacidad == 10;
+    }
   },
   methods: {
     ...mapActions(["agregarBus"])

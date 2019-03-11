@@ -39,7 +39,7 @@
           </b-form-group>
 
           <b-form-group id="ejemploRUT" label="RUT:" label-for="RUT">
-            <b-form-input id="RUT" type="number" v-model="chofer.RUT" required/>
+            <b-form-input id="RUT" type="text" v-model="chofer.RUT" required/>
           </b-form-group>
 
           <!-- <b-form-group id="exampleInputGroup3" label="Food:" label-for="exampleInput3">

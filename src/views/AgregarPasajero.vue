@@ -43,7 +43,7 @@
           </b-form-group>
 
           <b-form-group id="ejemploRUT" label="RUT:" label-for="RUT">
-            <b-form-input id="RUT" type="number" v-model="pasajero.RUT" required/>
+            <b-form-input id="RUT" type="text" v-model="pasajero.RUT" required/>
           </b-form-group>
 
           <b-form-group id="ejemploSexo" label="Sexo:" label-for="Sexo">
